@@ -49,7 +49,11 @@ public class UserServiceImp implements UserService, UserDetailsService {
     @Transactional
     @Override
     public void updateUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        if(user.getPassword() == "") {
+            user.setPassword(getUserByEmail(user.getEmail()).getPassword());
+        } else {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         userRepository.save(user);
     }
 
