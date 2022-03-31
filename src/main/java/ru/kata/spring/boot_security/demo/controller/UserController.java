@@ -61,6 +61,7 @@ public class UserController {
                              @PathVariable("id") long id,
                              @RequestParam(value = "inputRoles", required = false) Long[] inputRoles) {
         Set<Role> temp = new HashSet<>();
+        user.setId(id);
         if (inputRoles == null) {
             temp.add(roleService.getRoleByRoleName("ROLE_USER"));
             user.setRoleSet(temp);

@@ -50,7 +50,7 @@ public class UserServiceImp implements UserService, UserDetailsService {
     @Override
     public void updateUser(User user) {
         if(user.getPassword() == "") {
-            user.setPassword(getUserByEmail(user.getEmail()).getPassword());
+            user.setPassword(getUserById(user.getId()).getPassword());
         } else {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
